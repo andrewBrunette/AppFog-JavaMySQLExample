@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 5, 2015, 10:16:37 AM
+    Author     : Andrew Brunette
+*/
+body {
+    background-color: lightblue;
+    color: navy;
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 60px;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
+
