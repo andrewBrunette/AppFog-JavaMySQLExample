@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.centurylinkcloud.ecosystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.TreeMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.json.JSONObject;
-import org.json.JSONWriter;
+
 
 /**
  *
@@ -26,18 +23,7 @@ import org.json.JSONWriter;
 public class VcapVars extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * 
-     */
-        
-        
+            
         String json = new String();
         JSONObject jObj = null;
         try {
@@ -47,14 +33,14 @@ public class VcapVars extends HttpServlet {
         }
         catch (Exception e) {
             /* for local testing */
-            json = new JSONObject("{\"ctl_mysql\":[{\"name\":\"my_instance\",\"label\":\"ctl_mysql\",\"tags\":[],\"plan\":\"free\",\"credentials\":{\"url\":\"mysql://9.9.9.9:9999\",\"username\":\"admin\",\"password\":\"SHGDLKJHqLgK1S\",\"certificate\":\"-----BEGIN CERTIFICATE END CERTIFICATE-----\"}}]}").toString(2);
+            json = new String ("The environment variable 'VCAP_SERVICES' is not defined in your environment.  <br>You have not yet added a service to be connected to.");
         }
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"hw_css.css\"");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"j_example.css\"");
             out.println("</head>");
             out.println("<body>");
             out.println("<div align=\"center\">");
