@@ -58,7 +58,7 @@ public class CheckConnection extends HttpServlet {
             
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://" + host +":" + port.toString() + "/" + database + "?" +
-                                   "user=" +dbUser + "&password=" + dbPassword); 
+                                   "user=" +dbUser + "&password=" + dbPassword + "&useSSL=true"); 
             conn.close();
             return "Success";
         }
