@@ -80,17 +80,8 @@ public class CheckConnection extends HttpServlet {
                     .append("&useSSL=true").toString();
             Connection conn = DriverManager.getConnection(url);
 
-            PreparedStatement preparedStatement = conn.prepareStatement("show status like 'Ssl_cipher%'");
-            ResultSet rs = preparedStatement.executeQuery();
-
-            StringBuilder output = new StringBuilder();
-            while (rs.next()) {
-                output.append(rs.getString(1) + ":" + rs.getString(2) + "</br>");
-            }
-            rs.close();
-
             conn.close();
-            return output.toString();
+            return new String ("success");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return e.getMessage();
