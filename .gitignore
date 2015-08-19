@@ -1,3 +1,4 @@
 ./AFJavaExample/build/*
 ./AFJavaExample/nbproject
 ./AFJavaExample/build.xml
+./AFJavaExample/certs/*
