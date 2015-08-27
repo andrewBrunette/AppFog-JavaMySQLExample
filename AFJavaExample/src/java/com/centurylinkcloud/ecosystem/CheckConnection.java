@@ -79,13 +79,24 @@ public class CheckConnection extends HttpServlet {
                     .append("&password=").append(dbPassword)
                     .append("&useSSL=true").toString();
             Connection conn = DriverManager.getConnection(url);
-
+            // At this point, have a connection, do something with it.  We'll do something simple...
+            
+            PreparedStatement preparedStatement = conn.prepareStatement("show status like 'Ssl_cipher%'");
+            ResultSet rs = preparedStatement.executeQuery();
+            StringBuilder output = new StringBuilder();
+            output.append("Your connection has succeeded.  The ssl status is:");
+            while (rs.next()) {
+                output.append(rs.getString(1) + ":" + rs.getString(2) + "</br>");
+            }
+            rs.close();
             conn.close();
-            return new String ("success");
-        } catch (Exception e) {
+            return output.toString();
+        } 
+        catch (Exception e) {
             System.out.println(e.getMessage());
             return e.getMessage();
         }
+        
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -133,25 +144,12 @@ public class CheckConnection extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
